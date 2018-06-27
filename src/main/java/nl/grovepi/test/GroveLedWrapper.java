@@ -1,13 +1,14 @@
 package nl.grovepi.test;
 
+import nl.grovepi.test.units.Frequency;
 import org.iot.raspberry.grovepi.devices.GroveLed;
 
 import java.io.IOException;
 
-public class GroveLedAdapter implements Led {
+public class GroveLedWrapper implements Led {
     private final GroveLed groveLed;
 
-    public GroveLedAdapter(GroveLed groveLed) {
+    public GroveLedWrapper(GroveLed groveLed) {
         this.groveLed = groveLed;
     }
 

@@ -1,11 +1,26 @@
 package nl.grovepi.test;
 
-import java.util.function.Supplier;
-
 public class CustomAsserts {
-    public static void assertBiggerThanZero(int value, Supplier<String> messageSupplier) {
-        if (value <= 0) {
-            throw new RuntimeException(messageSupplier.get());
+    public static void assertBiggerThanZero(double value, AssertionFailedHandler handler) {
+        if (value <= 0d) {
+            handler.handleAssertionFailed();
         }
+    }
+
+    public static void assertZeroOrBigger(double value, AssertionFailedHandler handler) {
+        if (value < 0d) {
+            handler.handleAssertionFailed();
+        }
+    }
+
+    public static void assertNotBiggerThan(double value, double comparedTo, AssertionFailedHandler handler) {
+        if (value > comparedTo) {
+            handler.handleAssertionFailed();
+        }
+    }
+
+    @FunctionalInterface
+    public interface AssertionFailedHandler {
+        void handleAssertionFailed();
     }
 }
